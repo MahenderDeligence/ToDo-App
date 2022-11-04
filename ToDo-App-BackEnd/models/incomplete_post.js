@@ -1,11 +1,12 @@
 const mongoose = require("mongoose")
 
-const postSchema = mongoose.Schema({
+const incomplete_postSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String },
+    complete: { type: Boolean, require: true },
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true , versionKey: false})
 
-const Post = mongoose.model('Post', postSchema)
+const InCompletePost = mongoose.model('InCompletePost', incomplete_postSchema)
 
-module.exports = Post
+module.exports = InCompletePost
