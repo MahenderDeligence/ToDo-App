@@ -1,0 +1,50 @@
+.popUp_bg {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+    margin: auto auto;
+    left: 0;
+    top: 0;
+}
+
+.popUp {
+    width: 200px;
+    height: 170px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.popUp__footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.popUp__footer button{
+    border:none;
+    color:#fff;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+#cancelPopUp{
+    background-color: crimson;
+}
+
+#OkPopUp{
+    background-color:#00A0C6;
+}

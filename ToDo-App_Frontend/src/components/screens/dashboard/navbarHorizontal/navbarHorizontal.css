@@ -1,0 +1,27 @@
+.navHBg {
+    min-height: 55px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    /* border-bottom: 1px solid rgba(0, 0 , 0, 0.2); */
+    background-color: #00A0C6;
+}
+
+.navIcons {
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-end; */
+    cursor: pointer;
+    /* flex: 1; */
+    position: fixed;
+    right: 0;
+    padding-right: 20px;
+    color: #fff;
+}
+

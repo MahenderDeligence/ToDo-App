@@ -1,0 +1,113 @@
+.formBg {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20em;
+    width: 40em;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login h1 {
+    position: relative;
+    font-size: 25px;
+    font-weight: 600;
+    
+}
+
+.login_form_lt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #00A0C6;
+    border-right: none;
+    border-radius: 10px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    width: 50%;
+    color: #fff;
+}
+
+.login_form_lt p,
+span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.login_form_lt span a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login_form_lt span a:hover{
+    color: #333;
+}
+
+.login_form_rt{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 55px;
+    height: 200px;
+
+}
+
+.login_form_rt_inputFields{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.login_form_rt_inputFields input {
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.login_form_rt_buttons {
+    width: 210px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.loginBtn:hover {
+    color: #333;
+    
+} 
+.loginBtn{
+    cursor: pointer;
+    height: 42px;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    background-color: #00A0C6;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.forgotBtn{
+    cursor: pointer;
+    border: none;
+    color: #00A0C6;
+    background-color: #fff;
+    
+    
+}

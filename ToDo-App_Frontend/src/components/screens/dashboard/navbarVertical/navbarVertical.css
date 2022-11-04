@@ -1,0 +1,30 @@
+.navbarVertical{
+    position: fixed;
+    top:2.5em;
+    bottom:0;
+    left: 0;
+    background: white;
+    /* width: 15%; */
+    z-index: 100;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    padding: 70px 20px;
+    justify-content:space-evenly ;
+    border-right: 1px solid rgba(0, 0 , 0, 0.2);
+}
+.navVBg{
+   display: flex;
+   align-items: center;
+   font-weight: 400;
+   text-transform: uppercase;
+   margin-right: 10px;
+   cursor: pointer;
+}
+
+li:hover{
+  background-color:#00A0C6;
+  color:#fff ;
+
+}
