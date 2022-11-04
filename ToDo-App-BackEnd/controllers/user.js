@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const OTP = require("../models/otp")
 // const { use } = require("../routes/user")
-// const { response, response } = require("express")
+
 
 const registerUser = async (req, res) => {
     try {

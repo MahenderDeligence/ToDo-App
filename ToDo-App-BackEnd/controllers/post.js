@@ -36,7 +36,7 @@ const readPosts = async (req, res) => {
 }
 
 const deletePost = async (req, res) => {
-    // console.log(req.params.id);
+    console.log(req.params.id);
     try {
         const id = req.params.id
         let data = await Post.findById(id)
@@ -44,7 +44,7 @@ const deletePost = async (req, res) => {
         console.log(req.user._id )
         console.log(data.owner )
 
-        if(data.owner === req.user._id) {
+        if(data.owner.equals(req.user._id)) {
             console.log("hello")
             let postsData = await Post.findByIdAndDelete(id)
             res.status(200).json(postsData)

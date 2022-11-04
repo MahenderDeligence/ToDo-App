@@ -4,7 +4,7 @@ const { createPost, readPosts, deletePost, updatePost } = require("../controller
 const { authorize } = require("../middleware/auth")
 
 router.post("/", createPost)
-router.get("/", readPosts)
+router.get("/", authorize, readPosts)
 router.delete("/:id", authorize, deletePost)
 router.put("/:id", updatePost)
 
