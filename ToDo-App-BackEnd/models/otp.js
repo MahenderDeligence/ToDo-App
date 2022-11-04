@@ -6,7 +6,7 @@ const otpSchema = mongoose.Schema({
     code: { type: Number, required: true },
     expireIN: { type: Number }
 
-}, { timestamps: true })
+}, { timestamps: true , versionKey: false })
 
 const Otp = mongoose.model('Otp', otpSchema)
 
