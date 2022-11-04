@@ -36,16 +36,11 @@ const readPosts = async (req, res) => {
 }
 
 const deletePost = async (req, res) => {
-    console.log(req.params.id);
     try {
         const id = req.params.id
         let data = await Post.findById(id)
-        
-        console.log(req.user._id )
-        console.log(data.owner )
-
+    
         if(data.owner.equals(req.user._id)) {
-            console.log("hello")
             let postsData = await Post.findByIdAndDelete(id)
             res.status(200).json(postsData)
         } else{
@@ -59,8 +54,9 @@ const deletePost = async (req, res) => {
 
 const updatePost = async (req, res) => {
     const id = req.params.id;
-
-    Post.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    let data = await Post.findById(id)
+    if(data.owner.equals(req.user._id)){
+        Post.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {
                 res.status(404).send({
@@ -68,11 +64,12 @@ const updatePost = async (req, res) => {
                 });
             } else res.send({ message: "updated successfully." });
         })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error updating Tutorial with id=" + id 
-            });
+    }
+    else{
+        res.status(500).send({
+            message: "only user can update !!"
         });
+    }
 };
 
 
