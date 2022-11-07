@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 // const cors = require("cors")
 const post = require("./routes/post")
 const user = require("./routes/user")
-const filter = require("./routes/filter")
+// const filter = require("./routes/filter")
 
 
 const app = express()
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 //Base route
 app.use("/post", post)
 app.use("/user", user)
-app.use("/filter", filter)
+// app.use("/filter", filter)
 
 //MongoDB connection
 mongoose.connect(MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true }, () => {

@@ -12,9 +12,9 @@ const createPost = async (req, res) => {
         const currentUser = await User.findById(decoded.id)
 
 
-        const { title, content } = req.body
+        const { title, content, isStatus } = req.body
         const post = new Post({
-            title, content, owner: currentUser._id
+            title, content, isStatus, owner: currentUser._id
         })
 
         const postData = await post.save()
@@ -73,4 +73,22 @@ const updatePost = async (req, res) => {
 };
 
 
-module.exports = { createPost, readPosts, deletePost, updatePost }
+const completePost = async (req, res) => {
+    const match = {}
+    if(req.query.isStatus){
+        match.isStatus = req.query.isStatus === 'true'
+    }
+    try {
+        // console.log("complete post controller");
+        let postsData = await Post.find({owner: req.user._id, isStatus: match.isStatus}).populate("owner", "-password")
+        // let postsData1 = await Post.find({isStatus: true})
+
+        res.status(200).json(postsData)
+    } catch (error) {
+        console.log("error", error)
+        res.status(400).json({ message: error })
+    }
+};
+
+
+module.exports = { createPost, readPosts, deletePost, updatePost, completePost };
