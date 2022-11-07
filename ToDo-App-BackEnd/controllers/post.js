@@ -12,9 +12,9 @@ const createPost = async (req, res) => {
         const currentUser = await User.findById(decoded.id)
 
 
-        const { title, content, isStatus } = req.body
+        const { title, content, isStatus, lastDate } = req.body
         const post = new Post({
-            title, content, isStatus, owner: currentUser._id
+            title, content, isStatus, lastDate, owner: currentUser._id
         })
 
         const postData = await post.save()
@@ -73,15 +73,13 @@ const updatePost = async (req, res) => {
 };
 
 
-const completePost = async (req, res) => {
+const completeOrNot = async (req, res) => {
     const match = {}
     if(req.query.isStatus){
         match.isStatus = req.query.isStatus === 'true'
     }
     try {
-        // console.log("complete post controller");
         let postsData = await Post.find({owner: req.user._id, isStatus: match.isStatus}).populate("owner", "-password")
-        // let postsData1 = await Post.find({isStatus: true})
 
         res.status(200).json(postsData)
     } catch (error) {
@@ -90,5 +88,19 @@ const completePost = async (req, res) => {
     }
 };
 
+const lastDateTomorrow = async (req, res) => {
+    const tomorrow  = new Date(); 
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    console.log(tomorrow);
+    try {
+        
+        console.log(lastDate)
+        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        res.status(200).json(postsData)
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+};
 
-module.exports = { createPost, readPosts, deletePost, updatePost, completePost };
+
+module.exports = { createPost, readPosts, deletePost, updatePost, completeOrNot, lastDateTomorrow };

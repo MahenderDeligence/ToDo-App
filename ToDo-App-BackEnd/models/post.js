@@ -4,6 +4,7 @@ const postSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String },
     isStatus: { type: Boolean, default: false },
+    lastDate: { type: Date},
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true, })
 
