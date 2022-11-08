@@ -105,17 +105,14 @@ const lastDateToday = async (req, res) => {
           padTo2Digits(date.getDate()),
         ].join('-');
     }
-    console.log(tomorrow);
+    // console.log(tomorrow);
     
     try {
         let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
-        console.log(postsData)
         res.status(200).json(postsData)
-        console.log(postsData)
     } catch (error) {
-        res.status(400).json({ message: "only user can update !!" })
+        res.status(400).json({ message: "only user can see !!" })
     }
-    res.status(500).json({ message: "server side error" })
 };
 
 const lastDateWeek = async (req, res) => {
@@ -135,17 +132,14 @@ const lastDateWeek = async (req, res) => {
           padTo2Digits(date.getDate() + 7),
         ].join('-');
     }
-    console.log(tomorrow);
     
     try {
         let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
-        console.log(postsData)
+        // console.log(postsData)
         res.status(200).json(postsData)
-        console.log(postsData)
     } catch (error) {
-        res.status(400).json({ message: "only user can update !!" })
+        res.status(400).json({ message: "only user can see !!" })
     }
-    res.status(500).json({ message: "server side error" })
 };
 
 
@@ -166,17 +160,12 @@ const lastMonth = async (req, res) => {
           padTo2Digits(date.getDate()),
         ].join('-');
     }
-    console.log(tomorrow);
-    
     try {
         let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
-        console.log(postsData)
         res.status(200).json(postsData)
-        console.log(postsData)
     } catch (error) {
-        res.status(400).json({ message: "only user can update !!" })
+        res.status(400).json({ message: "only user can see !!" })
     }
-    res.status(500).json({ message: "server side error" })
 };
 
 
