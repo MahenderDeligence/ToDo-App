@@ -83,24 +83,110 @@ const completeOrNot = async (req, res) => {
 
         res.status(200).json(postsData)
     } catch (error) {
-        console.log("error", error)
+        // console.log("error", error)
         res.status(400).json({ message: error })
     }
 };
 
-const lastDateTomorrow = async (req, res) => {
-    const tomorrow  = new Date(); 
-    tomorrow.setDate(tomorrow.getDate() + 1);
+const lastDateToday = async (req, res) => {
+
+    const date = new Date();
+
+    const tomorrow = formatDate(date);
+
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+      
+    function formatDate(date) {
+        return [
+          date.getFullYear(),
+          padTo2Digits(date.getMonth() + 1),
+          padTo2Digits(date.getDate()),
+        ].join('-');
+    }
     console.log(tomorrow);
+    
     try {
-        
-        console.log(lastDate)
         let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        console.log(postsData)
         res.status(200).json(postsData)
+        console.log(postsData)
     } catch (error) {
-        res.status(400).json({ message: error })
+        res.status(400).json({ message: "only user can update !!" })
     }
+    res.status(500).json({ message: "server side error" })
+};
+
+const lastDateWeek = async (req, res) => {
+
+    const date = new Date();
+
+    const tomorrow = formatDate(date);
+
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+      
+    function formatDate(date) {
+        return [
+          date.getFullYear(),
+          padTo2Digits(date.getMonth() + 1),
+          padTo2Digits(date.getDate() + 7),
+        ].join('-');
+    }
+    console.log(tomorrow);
+    
+    try {
+        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        console.log(postsData)
+        res.status(200).json(postsData)
+        console.log(postsData)
+    } catch (error) {
+        res.status(400).json({ message: "only user can update !!" })
+    }
+    res.status(500).json({ message: "server side error" })
 };
 
 
-module.exports = { createPost, readPosts, deletePost, updatePost, completeOrNot, lastDateTomorrow };
+const lastMonth = async (req, res) => {
+
+    const date = new Date();
+
+    const tomorrow = formatDate(date);
+
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+      
+    function formatDate(date) {
+        return [
+          date.getFullYear(),
+          padTo2Digits(date.getMonth() + 2),
+          padTo2Digits(date.getDate()),
+        ].join('-');
+    }
+    console.log(tomorrow);
+    
+    try {
+        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        console.log(postsData)
+        res.status(200).json(postsData)
+        console.log(postsData)
+    } catch (error) {
+        res.status(400).json({ message: "only user can update !!" })
+    }
+    res.status(500).json({ message: "server side error" })
+};
+
+
+module.exports = { 
+    createPost, 
+    readPosts, 
+    deletePost, 
+    updatePost, 
+    completeOrNot, 
+    lastDateToday,
+    lastDateWeek,
+    lastMonth
+};
