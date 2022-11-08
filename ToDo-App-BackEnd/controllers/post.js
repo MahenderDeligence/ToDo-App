@@ -11,7 +11,6 @@ const createPost = async (req, res) => {
 
         const currentUser = await User.findById(decoded.id)
 
-
         const { title, content, isStatus, lastDate } = req.body
         const post = new Post({
             title, content, isStatus, lastDate, owner: currentUser._id
@@ -39,7 +38,9 @@ const deletePost = async (req, res) => {
     try {
         const id = req.params.id
         let data = await Post.findById(id)
-    
+
+        console.log(data.owner)
+        console.log(req.user._id)
         if(data.owner.equals(req.user._id)) {
             let postsData = await Post.findByIdAndDelete(id)
             res.status(200).json(postsData)
@@ -143,7 +144,7 @@ const lastDateWeek = async (req, res) => {
 };
 
 
-const lastMonth = async (req, res) => {
+const lastDateMonth = async (req, res) => {
 
     const date = new Date();
 
@@ -177,5 +178,5 @@ module.exports = {
     completeOrNot, 
     lastDateToday,
     lastDateWeek,
-    lastMonth
+    lastDateMonth
 };

@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { createPost, readPosts, deletePost, updatePost, completeOrNot, lastDateToday, lastDateWeek, lastMonth } = require("../controllers/post")
+const { createPost, readPosts, deletePost, updatePost, completeOrNot, lastDateToday, lastDateWeek, lastDateMonth } = require("../controllers/post")
 const { authorize } = require("../middleware/auth")
 
 // http://localhost:8000/post/create
@@ -21,7 +21,7 @@ router.get("/today", authorize, lastDateToday)
 
 router.get("/week", authorize, lastDateWeek)
 
-router.get("/month", authorize, lastMonth)
+router.get("/month", authorize, lastDateMonth)
 
 module.exports = router
 
