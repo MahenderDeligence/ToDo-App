@@ -96,6 +96,31 @@ const forgotPass = async (req, res) => {
     res.status(200).json(responseType)
 }
 
+function sendMail( email, code ){
+    let mailTransporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'mahender.deligence@gmail.com',
+            pass: 'ixfcdomcsrozqruq'
+        }
+    });
+     
+    let mailDetails = {
+        from: 'mahender.deligence@gmail.com',
+        to: email,
+        subject: 'Forgot Password OTP',
+        text: 'please use this code within 5 min for reset your password' + code
+    };
+     
+    mailTransporter.sendMail(mailDetails, function(err, data) {
+        if(err) {
+            console.log('Error Occurs');
+        } else {
+            console.log('Email sent successfully');
+        }
+    });
+}
+
 const changePass = async (req, res) => {
     let data = await OTP.find({email:req.body.email, code:req.body.otpcode});
     const responseType = {};
@@ -124,33 +149,6 @@ const changePass = async (req, res) => {
     }    
     res.status(200).json(res.status(200).json(responseType));
 }
-
-const sendMail = async ( req, res ) => {
-    let mailTransporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'mahender.deligence@gmail.com',
-            pass: 'Curren@830'
-        }
-    });
-     
-    let mailDetails = {
-        from: 'mahender.deligence@gmail.com',
-        to: 'mahipratap321@gmail.com',
-        subject: 'Reset OTP mail',
-        text: 'Node.js testing mail for'+req.otpcode 
-    };
-     
-    mailTransporter.sendMail(mailDetails, function(err, data) {
-        if(err) {
-            console.log('Error Occurs');
-        } else {
-            console.log('Email sent successfully');
-        }
-    });
-}
-
-
 
 
 const generateToken = (id) => {
