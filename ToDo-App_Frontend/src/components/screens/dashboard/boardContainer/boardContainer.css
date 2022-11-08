@@ -1,10 +1,10 @@
 .boardContainer{
     position: relative;
-    top: 60px;
-    left: 4%;
+    /* top: 60px; */
+    left: 2%;
     width: 75%;
     height: 80vh;
-    padding: 30px 0;
+    /* padding: 30px 0; */
     /* min-width: fit-content; */
     display: flex;
     justify-content: space-evenly;

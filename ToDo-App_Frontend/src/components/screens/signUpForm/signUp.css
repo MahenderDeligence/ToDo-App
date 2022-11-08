@@ -58,12 +58,14 @@ span {
     flex-direction: column;
     justify-content: space-between;
     padding: 55px;
+    height: 290px;
+    align-items: center;
 
 }
 
 .inputFields {
     width: 100%;
-    height: 12em;
+    height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,7 +73,7 @@ span {
 }
 
 .inputFields input {
-    height: 30px;
+    height: 35px;
     padding: 5px;
     border: 1px solid #333;
     border-radius: 5px;
@@ -92,7 +94,7 @@ span {
 
 .signUpBtn {
     cursor: pointer;
-    height:42px;
+    height:40px;
     /* padding: 5px; */
     width: 100%;
     border: none;
