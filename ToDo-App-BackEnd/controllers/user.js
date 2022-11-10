@@ -16,7 +16,6 @@ const registerUser = async (req, res) => {
             throw "User alreadyy exsists"
         }
 
-
         //if dont exsist, then encypt the password and save the user
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
@@ -35,6 +34,7 @@ const registerUser = async (req, res) => {
 
     } catch (error) {
         res.status(400).json({ messgae: error })
+        console.log(error)
     }
 }
 

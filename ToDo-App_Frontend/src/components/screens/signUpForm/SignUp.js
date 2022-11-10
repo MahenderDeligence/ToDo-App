@@ -23,6 +23,12 @@ const SignUp = () => {
         if (name && email && password) {
             axios.post("http://localhost:8000/user/register", user)
                 .then(res => console.log(res))
+                .catch((error) => {
+                    if( error.response ){
+                        console.log(error.response.data); 
+                    }
+                });
+                
         }
         else {
             alert("invalid input")
