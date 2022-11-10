@@ -101,12 +101,11 @@ const lastDateToday = async (req, res) => {
       
     function formatDate(date) {
         return [
-          date.getFullYear(),
-          padTo2Digits(date.getMonth() + 1),
-          padTo2Digits(date.getDate()),
+            padTo2Digits(date.getDate()),
+            padTo2Digits(date.getMonth() + 1),
+            date.getFullYear(),
         ].join('-');
     }
-    // console.log(tomorrow);
     
     try {
         let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
@@ -128,9 +127,9 @@ const lastDateWeek = async (req, res) => {
       
     function formatDate(date) {
         return [
-          date.getFullYear(),
-          padTo2Digits(date.getMonth() + 1),
-          padTo2Digits(date.getDate() + 7),
+            padTo2Digits(date.getDate() + 7),
+            padTo2Digits(date.getMonth() + 1),
+            date.getFullYear(),
         ].join('-');
     }
     
@@ -156,9 +155,9 @@ const lastDateMonth = async (req, res) => {
       
     function formatDate(date) {
         return [
-          date.getFullYear(),
-          padTo2Digits(date.getMonth() + 2),
-          padTo2Digits(date.getDate()),
+            padTo2Digits(date.getDate()),
+            padTo2Digits(date.getMonth() + 2),
+            date.getFullYear(),
         ].join('-');
     }
     try {

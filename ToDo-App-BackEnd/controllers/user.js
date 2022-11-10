@@ -109,7 +109,7 @@ function sendMail( email, code ){
         from: 'mahender.deligence@gmail.com',
         to: email,
         subject: 'Forgot Password OTP',
-        text: 'please use this code within 5 min for reset your password' + code
+        text: 'please use this code within 5 min for reset your password' +" "+code
     };
      
     mailTransporter.sendMail(mailDetails, function(err, data) {
