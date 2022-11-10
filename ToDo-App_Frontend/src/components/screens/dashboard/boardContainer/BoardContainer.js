@@ -5,6 +5,34 @@ import Modal from '../modal/Modal';
 
 const BoardContainer = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [values, setValues] = useState({
+    title: "",
+    desc: "",
+    date: new Date().toISOString().slice(0, 10)
+
+  });
+
+  const addCard = () => {
+    const card = {
+      id: Date.now() + Math.random(),
+      title: values.title,
+      desc: values.desc,
+      date: values.date
+    };
+
+    const tempBoards = [...boards];
+    tempBoards[0].cards.push(card);
+    setBoards(tempBoards)
+  };
+  
+  const handleInputChange = (e) => {
+
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    })
+
+  }
   const [boards, setBoards] = useState([
     {
       id: Date.now() + Math.random() * 2,
@@ -94,6 +122,8 @@ const BoardContainer = () => {
 
 
 
+
+
   const buttonText = {
     buttonAdd: "Add",
     buttonUpdate: "update"
@@ -118,7 +148,20 @@ const BoardContainer = () => {
       }
       <div>
         <button className='openModalBtn' onClick={() => { setModalOpen(true) }}>+ Add new</button>
-        {modalOpen ? <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} board={boards} setBoards={setBoards} placeholderTitle={placeholderText.title} placeholderDesc={placeholderText.desc} buttonAdd={buttonText.buttonAdd} /> : null}
+        {modalOpen ?
+          <Modal modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+            board={boards}
+            setBoards={setBoards}
+            placeholderTitle={placeholderText.title}
+            placeholderDesc={placeholderText.desc}
+            buttonAdd={buttonText.buttonAdd}
+            values={values}
+            setValues={setValues}
+            addCard={addCard}
+            handleInputChange={handleInputChange}
+          />
+          : null}
       </div>
 
     </div>
