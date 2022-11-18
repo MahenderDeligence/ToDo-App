@@ -3,28 +3,24 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer")
 const OTP = require("../models/otp")
-// const { use } = require("../routes/user")
-
+require('dotenv').config();
 
 const registerUser = async (req, res) => {
     try {
-        let { name, email, password } = req.body
-
+        let { name, email, password, isAdmin } = req.body
         //check whether user exsist or not
         const userExsists = await User.findOne({ email })
         if (userExsists) {
             throw "User alreadyy exsists"
         }
-
-
         //if dont exsist, then encypt the password and save the user
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
 
-        console.log(hashedPassword);
+        // console.log(hashedPassword);
 
         const user = new User({
-            name, email, password: hashedPassword
+            name, email, isAdmin, password: hashedPassword
         })
 
         const savedUser = await user.save()
@@ -32,7 +28,6 @@ const registerUser = async (req, res) => {
         res.status(200).json({
             name: savedUser.name, email: savedUser.email
         })
-
 
     } catch (error) {
         res.status(400).json({ messgae: error })
@@ -42,30 +37,32 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         let { email, password } = req.body
-
-        //check whether we have this email registered
         const user = await User.findOne({ email })
 
-        const passwordCorrect = await bcrypt.compare(password, user.password)
-        if (user && passwordCorrect) {
-            const token = generateToken(user._id)
-            res.status(200).json({
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                token
-            })
-        } else {
-            throw "Wrong credentials"
+        if(user.isAdmin === true){
+            res.send("hello Admin")
+            // res.redirect('/user');
         }
-
-        //if registered check password
-
+        else{
+            const passwordCorrect = await bcrypt.compare(password, user.password)
+            if (user && passwordCorrect) {
+                const token = generateToken(user._id)
+                res.status(200).json({
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    token
+                })
+            } else {
+                throw "Wrong credentials"
+            }
+        }
 
     } catch (error) {
         res.status(400).json({ messgae: error })
     }
 }
+
 
 
 const forgotPass = async (req, res) => {

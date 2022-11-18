@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema({
     isStatus: { type: Boolean, default: false },
     lastDate: { type: String, default: Date.toString('dd-mm-yyyy')},
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
-}, { timestamps: true, })
+}, { timestamps: true, versionKey: false})
 
 const Post = mongoose.model('Post', postSchema)
 

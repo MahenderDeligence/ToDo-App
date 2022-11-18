@@ -93,7 +93,7 @@ const lastDateToday = async (req, res) => {
 
     const date = new Date();
 
-    const tomorrow = formatDate(date);
+    const today = formatDate(date);
 
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
@@ -108,7 +108,7 @@ const lastDateToday = async (req, res) => {
     }
     
     try {
-        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        let postsData = await Post.find({owner: req.user._id, lastDate: today}).populate("owner", "-password")
         res.status(200).json(postsData)
     } catch (error) {
         res.status(400).json({ message: "only user can see !!" })
@@ -119,7 +119,7 @@ const lastDateWeek = async (req, res) => {
 
     const date = new Date();
 
-    const tomorrow = formatDate(date);
+    const today = formatDate(date);
 
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
@@ -134,7 +134,7 @@ const lastDateWeek = async (req, res) => {
     }
     
     try {
-        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        let postsData = await Post.find({owner: req.user._id, lastDate: today}).populate("owner", "-password")
         // console.log(postsData)
         res.status(200).json(postsData)
     } catch (error) {
@@ -147,7 +147,7 @@ const lastDateMonth = async (req, res) => {
 
     const date = new Date();
 
-    const tomorrow = formatDate(date);
+    const today = formatDate(date);
 
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
@@ -161,7 +161,7 @@ const lastDateMonth = async (req, res) => {
         ].join('-');
     }
     try {
-        let postsData = await Post.find({owner: req.user._id, lastDate: tomorrow}).populate("owner", "-password")
+        let postsData = await Post.find({owner: req.user._id, lastDate: today}).populate("owner", "-password")
         res.status(200).json(postsData)
     } catch (error) {
         res.status(400).json({ message: "only user can see !!" })
